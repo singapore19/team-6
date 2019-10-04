@@ -3,22 +3,22 @@ from rest_framework import serializers
 
 class UserMetadataSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='users-detail', read_only=True)
-    submitTime = serializers.DateTimeField(read_only=True, format="%Y-%m-%d %H:%M:%S")
+    u_timestamp = serializers.DateTimeField(read_only=True, format="%Y-%m-%d %H:%M:%S")
     class Meta:
         model = UserMetadata
-        ordering = ['-submitTime']
-        fields = ('submitTime', 'url')
+        ordering = ['-u_timestamp']
+        fields = ('u_timestamp', 'u_name', 'u_age', 'u_gender', 'u_race', 'u_availdays', 'u_availtime', 'url')
         extra_kwargs = {
             'date': {'required': True},
         }
 
 class ReportDataSerializer(serializers.HyperlinkedModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='reports-detail', read_only=True)
-    submitTime = serializers.DateTimeField(read_only=True, format="%Y-%m-%d %H:%M:%S")
+    h_timestamp = serializers.DateTimeField(read_only=True, format="%Y-%m-%d %H:%M:%S")
     class Meta:
         model = ReportData
-        ordering = ['-submitTime']
-        fields = ('submitTime', 'url')
+        ordering = ['-h_timestamp']
+        fields = ('h_timestamp', 'h_agerange', 'h_gender', 'h_race', 'h_location', 'h_description', 'url')
         extra_kwargs = {
             'date': {'required': True},
         }

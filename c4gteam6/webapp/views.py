@@ -23,9 +23,6 @@ class UserMetadataViewSet(viewsets.ModelViewSet):
     ordering_fields = '__all__'
 
 class UserMetadataDetail(APIView):
-    """
-    Retrieve, update or delete a SermonMetadata instance.
-    """
     def get_object(self, pk):
         try:
             return UserMetadata.objects.get(pk=pk)
