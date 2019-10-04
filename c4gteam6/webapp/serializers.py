@@ -29,7 +29,7 @@ class NewReportDataSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = NewReportData
         ordering = ['-h_timestamp']
-        fields = ('h_timestamp', 'h_location', 'image', 'h_gender', 'h_race', 'h_frequency', 'h_agerange', 'h_description', 'h_risk', 'url')
+        fields = ('h_timestamp', 'h_latitude', 'h_longitude', 'image', 'h_gender', 'h_race', 'h_frequency', 'h_agerange', 'h_description', 'h_risk', 'url')
         extra_kwargs = {
             'date': {'required': True},
         }
