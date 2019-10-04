@@ -28,6 +28,11 @@
             </div>
         </div>
     </header>
+    
+
+    
+    
+    
 
     <form>
         <div class="form-group mx-auto" style="width: 500px;">
@@ -142,6 +147,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- End of JS -->
+    <script>
+        $('#myModal').on('shown.bs.modal', function() {
+            $('#myInput').trigger('focus')
+        })
+
+    </script>
+
     <script type="text/javascript">
         //------------------------------Upload Success ---------------------------------------------//
         //open upload dialogue box -> successful upload -> success event -> call back function -> modify html document
@@ -152,6 +164,8 @@
 
         //---------------------Modal------------------------------------------//
 
+        
+
         //----------------------Payload-----------------------------------//
         function myfunc() {
 
@@ -161,21 +175,41 @@
                 var location = document.getElementById('location')
 
                 var gender = document.querySelector('input[name = opgender]:checked').value
-                console.log(gender)
+                //console.log(gender)
 
                 var race = document.querySelector('input[name = oprace]:checked').value
-                console.log(race)
+                //console.log(race)
 
                 var agerange = document.getElementById('agerange').value
-                console.log(agerange)
+                //console.log(agerange)
 
                 var nooftimes = document.getElementById('nooftimes').value
-                console.log(nooftimes)
+                //console.log(nooftimes)
 
                 var risk = document.getElementById('risk').value
-                console.log(risk)
+                //console.log(risk)
 
-                const payload = {
+            }
+
+            //Write to CSV
+            csvRows = [
+                [document.getElementById('location').value, document.querySelector('input[name = opgender]:checked').value, document.querySelector('input[name = oprace]:checked').value, document.getElementById('agerange').value, document.getElementById('nooftimes').value, document.getElementById('risk').value]
+            ];
+
+            var csvString = csvRows.join("%0A");
+            var a = document.createElement('a');
+            a.href = 'data:attachment/csv,' + csvString;
+            a.target = '_blank';
+            a.download = 'myFile.csv';
+            document.body.appendChild(a);
+            a.click();
+
+
+        }
+
+    </script>
+
+    <!--                 const payload = {
                     location: location,
                     gender: gender,
                     race: race,
@@ -183,13 +217,7 @@
                     nooftimes: nooftimes,
                     risk: risk
                 }
-                console.log(payload)
-            }
-        }
-
-    </script>
-
-
+                console.log(payload) -->
 
 
 </body>
