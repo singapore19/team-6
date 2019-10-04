@@ -191,19 +191,6 @@
 
             }
 
-            //Write to CSV
-            csvRows = [
-                [document.getElementById('location').value, document.querySelector('input[name = opgender]:checked').value, document.querySelector('input[name = oprace]:checked').value, document.getElementById('agerange').value, document.getElementById('nooftimes').value, document.getElementById('risk').value]
-            ];
-
-            var csvString = csvRows.join("%0A");
-            var a = document.createElement('a');
-            a.href = 'data:attachment/csv,' + csvString;
-            a.target = '_blank';
-            a.download = 'myFile.csv';
-            document.body.appendChild(a);
-            a.click();
-
 
         }
 
@@ -217,7 +204,26 @@
                     nooftimes: nooftimes,
                     risk: risk
                 }
-                console.log(payload) -->
+                console.log(payload) 
+                
+                
+                
+            //Write to CSV
+            csvRows = [
+                [document.getElementById('location').value, document.querySelector('input[name = opgender]:checked').value, document.querySelector('input[name = oprace]:checked').value, document.getElementById('agerange').value, document.getElementById('nooftimes').value, document.getElementById('risk').value]
+            ];
+
+            var csvString = csvRows.join("%0A");
+            var a = document.createElement('a');
+            a.href = 'data:attachment/csv,' + csvString;
+            a.target = '_blank';
+            a.download = 'myFile.csv';
+            document.body.appendChild(a);
+            a.click();
+
+                
+                
+                -->
 
 
 </body>
