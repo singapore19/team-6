@@ -7,6 +7,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import HttpResponse, HttpResponseNotFound, JsonResponse, Http404
 from rest_framework.decorators import api_view
+from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render_to_response
 
 def index(request):
     if request.method == 'GET':
@@ -20,13 +22,17 @@ def submission_form(request):
     if request.method == 'GET':
         return render(request, 'Submission Form.html')
 
+@csrf_exempt
 @api_view(['GET', 'POST'])
 def json_form(request):
-    serializer = NewReportDataSerializer(data=request.data, context={'request': request})
-    if serializer.is_valid():
-        serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == "POST":
+        serializer = NewReportDataSerializer(data=request.data, context={'request': request})
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return render(request, 'Submission Form.html')
 
 # Create your views here.
 class UserMetadataViewSet(viewsets.ModelViewSet):
