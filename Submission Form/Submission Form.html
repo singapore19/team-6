@@ -28,6 +28,7 @@
             </div>
         </div>
     </header>
+
     <form>
         <div class="form-group mx-auto" style="width: 500px;">
 
@@ -55,23 +56,47 @@
                 <h6 class="font-weight-light">Gender of Rough Sleepers</h6>
             </label>
             <br>
-            <label class="radio-inline" style='padding-right: 10px'>
-            <input type="radio" name="opgender" checked> Male</label>
-            <label class="radio-inline"><input type="radio" name="opgender"> Female</label>
+
+
+            <form id='opgender'>
+                <label class="radio-inline" style='padding-right: 10px'>
+                    <input type="radio" name="opgender" value='M' id='m' checked> Male
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="opgender" value='F' id='f'> Female
+                </label>
+            </form>
+
+
+
+
+
             <br>
             <br>
             <label for="gender">
                 <h6 class="font-weight-light">Race of Rough Sleeps</h6>
             </label>
             <br>
-            <label class="radio-inline" style='padding-right: 5px'><input type="radio" name="oprace" checked> Chinese</label>
-            <label class="radio-inline" style='padding-right: 5px'><input type="radio" name="oprace"> Malay</label>
-            <label class="radio-inline" style='padding-right: 5px'><input type="radio" name="oprace"> Indian</label>
-            <label class="radio-inline" style='padding-right: 5px'><input type="radio" name="oprace"> Eurasian</label>
+            <label class="radio-inline" style='padding-right: 5px'><input type="radio" name="oprace" value="chinese" checked> Chinese</label>
+            <label class="radio-inline" style='padding-right: 5px'><input type="radio" name="oprace" value="malay"> Malay</label>
+            <label class="radio-inline" style='padding-right: 5px'><input type="radio" name="oprace" value="indian"> Indian</label>
+            <label class="radio-inline" style='padding-right: 5px'><input type="radio" name="oprace" value="eurasian"> Eurasian</label>
             <label class="radio-inline"><input type="radio" name="oprace"> Others</label>
             <br>
             <br>
 
+            <label for="agerange">
+                <h6 class="font-weight-light">How old does this rough sleeper look like?</h6>
+            </label>
+            <select class="form-control" id="agerange">
+                <option>30 and under</option>
+                <option>30 - 45</option>
+                <option>45 - 60</option>
+                <option>60 - 75</option>
+                <option>80 onwards</option>
+            </select>
+
+            <br>
             <label for="nooftimes">
                 <h6 class="font-weight-light">How many times have you seen him/her around?</h6>
             </label>
@@ -84,12 +109,24 @@
                 <option>>5</option>
             </select>
             <br>
+
+            <label for="nooftimes">
+                <h6 class="font-weight-light">Would this rough sleeper pose a risk? </h6>
+            </label>
+            <br>
+            <select class="form-control" id="risk">
+                <option>No</option>
+                <option>Maybe</option>
+                <option>Yes</option>
+            </select>
+            <br>
+            <br>
             <label for="othernote">Other Note</label>
-            <textarea class="form-control" id="othernote" rows="3"></textarea>
+            <textarea class="form-control" id="othernote" rows="3">Any information you could give?</textarea>
 
             <br>
             <br>
-            <button class="btn btn-outline-success float-right" type="submit">Submit form</button>
+            <button class="btn btn-outline-success float-right" type="submit" style="margin-bottom: 10px" onclick="myfunc()">Submit form</button>
 
         </div>
 
@@ -106,11 +143,48 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <!-- End of JS -->
     <script type="text/javascript">
+        //------------------------------Upload Success ---------------------------------------------//
         //open upload dialogue box -> successful upload -> success event -> call back function -> modify html document
         const inputElement = document.getElementById('homelessphoto')
         inputElement.onchange = function(event) {
             document.getElementById('uploadstatuslabel').style.display = 'block'
+        }
 
+        //---------------------Modal------------------------------------------//
+
+        //----------------------Payload-----------------------------------//
+        function myfunc() {
+
+            if (document.getElementById("location").value == '') {
+                alert("Please fill in the location");
+            } else {
+                var location = document.getElementById('location')
+
+                var gender = document.querySelector('input[name = opgender]:checked').value
+                console.log(gender)
+
+                var race = document.querySelector('input[name = oprace]:checked').value
+                console.log(race)
+
+                var agerange = document.getElementById('agerange').value
+                console.log(agerange)
+
+                var nooftimes = document.getElementById('nooftimes').value
+                console.log(nooftimes)
+
+                var risk = document.getElementById('risk').value
+                console.log(risk)
+
+                const payload = {
+                    location: location,
+                    gender: gender,
+                    race: race,
+                    agerange: agerange,
+                    nooftimes: nooftimes,
+                    risk: risk
+                }
+                console.log(payload)
+            }
         }
 
     </script>
