@@ -23,7 +23,8 @@ class ReportData(models.Model):
 
 class NewReportData(models.Model):
     h_timestamp = models.DateTimeField(auto_now_add=True, null=True)
-    h_location = models.CharField(max_length=100, null=True)
+    h_latitude = models.CharField(max_length=100, null=True)
+    h_longitude = models.CharField(max_length=100, null=True)
     image = models.ImageField(
             upload_to=productFile,
             max_length=254, blank=True, null=True
