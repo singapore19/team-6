@@ -15,6 +15,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('home/', views.index, name='home'),
     path('admin-home/', views.admin_home, name='admin-home'),
+    path('submission-form/', views.submission_form, name='submission-form'),
     path('users/<int:pk>/', views.UserMetadataDetail.as_view(), name='users-detail'),
     path('reports/<int:pk>/', views.ReportDataDetail.as_view(), name='reports-detail'),
 ]

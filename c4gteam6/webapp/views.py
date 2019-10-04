@@ -14,6 +14,10 @@ def admin_home(request):
     if request.method == 'GET':
         return render(request, 'admin-home.html')
 
+def submission_form(request):
+    if request.method == 'GET':
+        return render(request, 'Submission Form.html')
+
 # Create your views here.
 class UserMetadataViewSet(viewsets.ModelViewSet):
     queryset = UserMetadata.objects.all()
